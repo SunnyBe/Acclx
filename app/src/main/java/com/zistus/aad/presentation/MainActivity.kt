@@ -1,9 +1,8 @@
-package com.zistus.aad
+package com.zistus.aad.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
+import com.zistus.aad.R
 
 class MainActivity : AppCompatActivity() {
 
