@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     // Update the view with the card detail fetched
     private fun updateDetailView(card: Entity.Card) {
         val emptyValue = "Not Available"
+
         first_data?.text = resources.getString(
             R.string.card_type_data,
             card.type?.capitalize()?:emptyValue,
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         )
         second_data?.text = resources.getString(
             R.string.card_bank_data,
-            card.bank?.name?.capitalize()?:emptyValue,
+            "${card.bank?.name?.capitalize()?:emptyValue}, ${card.bank?.city?.capitalize()?:""}",
             card.country?.name?.capitalize()?:emptyValue
         )
         third_data?.text = "Number Length: ${card.number?.length?:emptyValue}"
