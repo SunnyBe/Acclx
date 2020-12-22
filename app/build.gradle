@@ -66,4 +66,7 @@ dependencies {
     testImplementation "org.powermock:powermock-core:1.7.3"
     testImplementation "org.powermock:powermock-module-junit4:1.7.3"
     testImplementation "org.powermock:powermock-api-mockito2:1.7.3"
+
+    def mockwebserverVersion = "4.9.0"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserverVersion"
 }

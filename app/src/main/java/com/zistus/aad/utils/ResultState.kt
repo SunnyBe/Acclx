@@ -1,7 +1,7 @@
 package com.zistus.aad.utils
 
 data class ResultState<T>(
-    val data: T? = null,
+    var data: Event<T>? = null,
     val error: Throwable? = null,
     val loading: Boolean? = false,
 ) {
@@ -19,7 +19,7 @@ data class ResultState<T>(
         )
 
         fun <T> data(data: T?) = ResultState<T>(
-            data = data,
+            data = Event.dataEvent(data),
             error = null,
             loading = false,
         )

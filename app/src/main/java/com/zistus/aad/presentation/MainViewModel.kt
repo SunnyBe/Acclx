@@ -6,9 +6,11 @@ import androidx.lifecycle.asLiveData
 import com.zistus.aad.data.network.MainRepo
 import com.zistus.aad.data.network.MainRepoImpl
 import com.zistus.aad.utils.ResultState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 
 class MainViewModel(
     private val mainRepo: MainRepo = MainRepoImpl()
@@ -17,6 +19,7 @@ class MainViewModel(
     private val stateChannel = ConflatedBroadcastChannel<MainViewState>()
     private val eventChannel = ConflatedBroadcastChannel<MainStateEvent>(MainStateEvent.Idle())
 
+    val viewState = stateChannel.asFlow().asLiveData()
     val dataState = eventChannel.asFlow()
         .flatMapLatest { stateEvent ->
             processActions(stateEvent)
@@ -40,6 +43,7 @@ class MainViewModel(
     }
 
     fun queryCard(cardNumber: String) {
+        Log.d(javaClass.simpleName, "Initiated query: $viewState")
         eventChannel.offer(MainStateEvent.GetCard(cardNumber = cardNumber))
     }
 

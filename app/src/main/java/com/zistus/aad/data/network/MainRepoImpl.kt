@@ -2,7 +2,7 @@ package com.zistus.aad.data.network
 
 import com.zistus.aad.presentation.MainViewState
 import com.zistus.aad.utils.ResultState
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.*
 
 class MainRepoImpl constructor(private val network: ApiService = RetrofitBuilder.network()) :
@@ -18,7 +18,7 @@ class MainRepoImpl constructor(private val network: ApiService = RetrofitBuilder
         }.catch {
             emit(ResultState.error(it.cause))
         }
-            .flowOn(Dispatchers.IO)
+            .flowOn(IO)
     }
 
 }
