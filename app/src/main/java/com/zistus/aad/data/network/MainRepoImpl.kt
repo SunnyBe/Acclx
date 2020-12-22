@@ -1,24 +1,39 @@
 package com.zistus.aad.data.network
 
+import android.content.Context
 import com.zistus.aad.presentation.MainViewState
+import com.zistus.aad.utils.ConnectionAvailability
 import com.zistus.aad.utils.ResultState
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.*
 
-class MainRepoImpl constructor(private val network: ApiService = RetrofitBuilder.network()) :
+class MainRepoImpl constructor(
+    private val context: Context,
+    private val network: ApiService = RetrofitBuilder.network()
+) :
     MainRepo {
     override fun card(cardNumber: String?): Flow<ResultState<MainViewState>> {
-        return flow {
+        return flow<ResultState<MainViewState>> {
             val card = cardNumber?.let {
                 network.card(cardNumber)
             }
             emit(ResultState.data(MainViewState(card = card)))
         }.onStart {
-            emit(ResultState.loading())
+            if (isInternetAvailable(context)) {
+                emit(ResultState.loading())
+            }
         }.catch {
-            emit(ResultState.error(it.cause))
+            it.printStackTrace()
+            emit(ResultState.error(it))
         }
             .flowOn(IO)
+    }
+
+    // Check if mobile phone has internet connectivity turned on
+    private fun isInternetAvailable(context: Context): Boolean {
+        if (ConnectionAvailability.hasNetworkAvailable(context)) {
+            return true
+        } else throw RuntimeException("Connect to internet and try again!")
     }
 
 }

@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.zistus.aad.data.network.MainRepo
-import com.zistus.aad.data.network.MainRepoImpl
 import com.zistus.aad.utils.ResultState
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 
 class MainViewModel(
-    private val mainRepo: MainRepo = MainRepoImpl()
+    private val mainRepo: MainRepo
 ) : ViewModel() {
 
     private val stateChannel = ConflatedBroadcastChannel<MainViewState>()

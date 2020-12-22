@@ -14,7 +14,9 @@ class ProgressFragment : DialogFragment() {
     companion object {
         const val TAG = "ProgressDialog"
         fun instance(): ProgressFragment {
-            return ProgressFragment()
+            return ProgressFragment().apply {
+                isCancelable = false
+            }
         }
     }
 
