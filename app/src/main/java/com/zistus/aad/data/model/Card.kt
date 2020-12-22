@@ -7,7 +7,9 @@ sealed class Entity {
         val type: String? = null,
         val brand: String? = null,
         val prepaid: Boolean = false,
-        val bank: Bank
+        val bank: Bank? = null,
+        val country: Country? = null,
+        val number: CardNumber? = null
     ) : Entity()
 
     data class Bank(
@@ -15,7 +17,7 @@ sealed class Entity {
         val url: String? = null,
         val phone: String? = null,
         val city: String? = null,
-    ): Entity()
+    ) : Entity()
 
     data class Country(
         val numeric: String? = null,
@@ -27,8 +29,8 @@ sealed class Entity {
         val longitude: Int? = null,
     ) : Entity()
 
-    data class Number(
-        val length: Int? =null,
+    data class CardNumber(
+        val length: Int? = null,
         val luhn: Boolean = true
-    ): Entity()
+    ) : Entity()
 }

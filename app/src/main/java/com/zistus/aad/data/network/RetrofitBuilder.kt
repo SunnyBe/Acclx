@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
-    private fun network(): ApiService {
+    fun network(): ApiService {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://lookup.binlist.net")
             .client(okhttpClient())
