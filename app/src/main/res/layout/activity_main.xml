@@ -143,6 +143,13 @@
                 tools:text="Scheme: Visa"
                 android:layout_margin="8dp"/>
 
+            <TextView
+                android:id="@+id/fourth_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Scheme: Visa"
+                android:layout_margin="8dp"/>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
