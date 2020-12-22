@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
             val number = card_number_entry.text.toString()
             if (number.isNotBlank() && number.length > 6) {
                 viewModel.queryCard(number)
+            }else {
+                card_number_entry_layout.error = "Enter first 6-9 digits of card!"
             }
         }
 
