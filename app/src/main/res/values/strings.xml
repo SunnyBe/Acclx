@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AAD</string>
+    <string name="check_number_label">Check Number</string>
+    <string name="card_check_instruction">Enter the first 6-9 digits of a card to \ncheck the detail of the card. \nCard detail is displayed below</string>
+    <string name="card_details">Card Details</string>
+    <string name="card_type_data">Card type: %1$s \nCard Scheme: %2$s</string>
+    <string name="card_bank_data">Bank: %1$s \nCountry: %2$s</string>
+    <string name="number_hint">Enter digits of card</string>
+</resources>
