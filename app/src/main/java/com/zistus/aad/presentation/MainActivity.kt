@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     // Update the view with the card detail fetched
     private fun clearDetailView() {
-        if (card_number_entry_layout.isErrorEnabled) card_number_entry_layout?.isErrorEnabled = false
+        if (card_number_entry_layout.isErrorEnabled) card_number_entry_layout?.error = null
         first_data?.text = ""
         second_data?.text = ""
         third_data?.text = ""
