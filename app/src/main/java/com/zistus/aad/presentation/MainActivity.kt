@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         start_button?.setOnClickListener {
             val number = card_number_entry.text.toString()
             if (number.isNotBlank() && number.length > 6) {
+                clearDetailView()
                 viewModel.queryCard(number)
             }else {
                 card_number_entry_layout.error = "Enter first 6-9 digits of card!"
@@ -49,17 +50,26 @@ class MainActivity : AppCompatActivity() {
 
     // Update the view with the card detail fetched
     private fun updateDetailView(card: Entity.Card) {
+        val emptyValue = ""
         first_data?.text = resources.getString(
             R.string.card_type_data,
-            card.type?.capitalize(),
-            card.scheme?.capitalize()
+            card.type?.capitalize()?:emptyValue,
+            card.scheme?.capitalize()?:emptyValue
         )
         second_data?.text = resources.getString(
             R.string.card_bank_data,
-            card.bank?.name?.capitalize(),
-            card.country?.name?.capitalize()
+            card.bank?.name?.capitalize()?:emptyValue,
+            card.country?.name?.capitalize()?:emptyValue
         )
         third_data?.text = if (card.prepaid) "Prepaid" else "Not Prepaid"
+    }
+
+    // Update the view with the card detail fetched
+    private fun clearDetailView() {
+        if (card_number_entry_layout.isErrorEnabled) card_number_entry_layout?.isErrorEnabled = false
+        first_data?.text = ""
+        second_data?.text = ""
+        third_data?.text = ""
     }
 
     // Observes the live-data states from the viewModel and execute as necessary
