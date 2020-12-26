@@ -1,4 +1,4 @@
-package com.zistus.aad.utils
+package com.zistus.aad.fakes
 
 import com.zistus.aad.data.model.Entity
 import com.zistus.aad.data.network.ApiService

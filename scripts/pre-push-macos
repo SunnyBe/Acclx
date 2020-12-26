@@ -2,7 +2,7 @@
 
 echo "Running test..."
 
-./gradlew app:test --daemon
+./gradlew app:test --daemon --stacktrace
 
 status=$?
 
