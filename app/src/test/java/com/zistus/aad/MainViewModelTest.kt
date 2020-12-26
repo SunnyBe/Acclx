@@ -44,7 +44,7 @@ class MainViewModelTest {
             Mockito.`when`(mainRepo.card("012345678912345")).thenReturn(testFlow)
 
             val expectedType = "debit"
-            Assert.assertEquals(expectedType, mainViewModel.dataState.getValueForTest()?.data?.card?.type)
+            Assert.assertEquals(expectedType, mainViewModel.dataState.getValueForTest()?.data?.getContentIfNotHandled()?.card?.type)
         }
     }
 
