@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+import org.apache.tools.ant.taskdefs.condition.Os
 
 buildscript {
     ext.kotlin_version = '1.4.20'
@@ -27,3 +28,21 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+task installGitHooks(type: Copy) {
+    def suffix = "macos"
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        suffix = "windows"
+    }
+
+    from new File(rootProject.rootDir, "scripts/pre-commit-$suffix")
+    into { new File(rootProject.rootDir, '.git/hooks') }
+    rename("pre-commit-$suffix", 'pre-commit')
+    fileMode 0775
+
+//    from new File(rootProject.rootDir, "scripts/pre-push-$suffix")
+//    into { new File(rootProject.rootDir, '.git/hooks') }
+//    rename("pre-push-$suffix", 'pre-push')
+}
+
+tasks.getByPath(':app:preBuild').dependsOn installGitHooks
