@@ -29,7 +29,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task installGitHooks(type: Copy) {
+task installGitHook(type: Copy) {
     def suffix = "macos"
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         suffix = "windows"
@@ -45,4 +45,4 @@ task installGitHooks(type: Copy) {
 //    rename("pre-push-$suffix", 'pre-push')
 }
 
-tasks.getByPath(':app:preBuild').dependsOn installGitHooks
+tasks.getByPath(':app:preBuild').dependsOn installGitHook
