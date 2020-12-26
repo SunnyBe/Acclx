@@ -17,6 +17,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.jlleitschuh.gradle.ktlint" version "9.4.1"
+}
+
 allprojects {
     repositories {
         google()
@@ -34,11 +38,10 @@ task installGitHook(type: Copy) {
     if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         suffix = "windows"
     }
-
     from new File(rootProject.rootDir, "scripts/pre-commit-$suffix")
     into { new File(rootProject.rootDir, '.git/hooks') }
     rename("pre-commit-$suffix", 'pre-commit')
-    fileMode 0775
+    fileMode 0777
 
 //    from new File(rootProject.rootDir, "scripts/pre-push-$suffix")
 //    into { new File(rootProject.rootDir, '.git/hooks') }
@@ -46,3 +49,4 @@ task installGitHook(type: Copy) {
 }
 
 tasks.getByPath(':app:preBuild').dependsOn installGitHook
+
