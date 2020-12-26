@@ -11,7 +11,7 @@ data class NetworkFakes(
     companion object {
         fun testCardQuery(testNumber: String?) = testCard()
 
-        private fun testCard(testNumber: String?="012345678912345") = Entity.Card(
+        private fun testCard(testNumber: String? = "012345678912345") = Entity.Card(
             scheme = "visa",
             type = "debit",
             brand = "Visa/Dankort",
@@ -47,7 +47,6 @@ class NetworkServiceFake() : ApiService {
     override suspend fun card(
         queryEntry: String
     ): Entity.Card = NetworkFakes.testCardQuery(queryEntry)
-
 }
 
 /**
@@ -56,5 +55,4 @@ class NetworkServiceFake() : ApiService {
 class NetworkServiceCompletableFake() : ApiService {
     override suspend fun card(queryEntry: String): Entity.Card =
         CompletableDeferred<Entity.Card>().await()
-
 }

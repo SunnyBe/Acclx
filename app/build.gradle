@@ -1,6 +1,11 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+import org.apache.tools.ant.taskdefs.condition.Os
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id "org.jlleitschuh.gradle.ktlint" version "9.4.1"
+}
 
 android {
     compileSdkVersion 29
@@ -34,6 +39,10 @@ android {
 
     testOptions {
         unitTests.returnDefaultValues = true
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
 }
@@ -83,3 +92,20 @@ dependencies {
     def mockwebserverVersion = "4.9.0"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockwebserverVersion"
 }
+
+task installGitHook(type: Copy) {
+    def suffix = "macos"
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        suffix = "windows"
+    }
+    from new File(rootProject.rootDir, "scripts/pre-commit-$suffix")
+    into { new File(rootProject.rootDir, '.git/hooks') }
+    rename("pre-commit-$suffix", 'pre-commit')
+    fileMode 0775
+
+//    from new File(rootProject.rootDir, "scripts/pre-push-$suffix")
+//    into { new File(rootProject.rootDir, '.git/hooks') }
+//    rename("pre-push-$suffix", 'pre-push')
+}
+
+tasks.getByPath(':app:preBuild').dependsOn installGitHook

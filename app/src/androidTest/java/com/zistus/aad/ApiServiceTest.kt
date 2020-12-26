@@ -4,7 +4,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.zistus.aad.utils.MainCoroutineScopeRule
 import com.zistus.aad.utils.NetworkServiceCompletableFake
 import com.zistus.aad.utils.NetworkServiceFake
-import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
