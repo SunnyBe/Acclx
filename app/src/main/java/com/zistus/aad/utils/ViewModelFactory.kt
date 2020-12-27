@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.zistus.aad.data.network.MainRepoImpl
 import com.zistus.aad.presentation.MainViewModel
 
+@Suppress("UNCHECKED_CAST")
 class ViewModelFactory constructor(
     private val context: Context
 ) : ViewModelProvider.Factory {

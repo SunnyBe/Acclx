@@ -35,5 +35,4 @@ class MainRepoImpl constructor(
             return true
         } else throw RuntimeException("Connect to internet and try again!")
     }
-
 }

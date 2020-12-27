@@ -45,5 +45,4 @@ class MainViewModel(
         Log.d(javaClass.simpleName, "Initiated query: $viewState")
         eventChannel.offer(MainStateEvent.GetCard(cardNumber = cardNumber))
     }
-
 }

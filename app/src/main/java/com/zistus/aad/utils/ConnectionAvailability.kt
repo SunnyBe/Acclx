@@ -14,5 +14,4 @@ object ConnectionAvailability {
         Log.d(classTag, "hasNetworkAvailable: ${(network != null)}")
         return (network?.isConnected) ?: false
     }
-
 }

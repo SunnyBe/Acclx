@@ -2,6 +2,7 @@ package com.zistus.aad
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.zistus.aad.data.network.MainRepo
+import com.zistus.aad.fakes.NetworkFakes
 import com.zistus.aad.presentation.MainViewModel
 import com.zistus.aad.presentation.MainViewState
 import com.zistus.aad.utils.*
