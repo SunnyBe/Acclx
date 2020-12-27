@@ -1,0 +1,2 @@
+##Acclx
+# Card Detail application
