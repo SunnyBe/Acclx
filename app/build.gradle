@@ -46,7 +46,10 @@ android {
 
     sourceSets {
         // Allows access to the java debug file[i.e TestingFakes.kt]
-        debug.java.srcDirs += 'src/debug/java'
+        final String sharedTestDir = 'src/debug/java'
+        test.java.srcDirs += sharedTestDir
+        androidTest.java.srcDirs += sharedTestDir
+//        debug.java.srcDirs += 'src/debug/java'
     }
 }
 
